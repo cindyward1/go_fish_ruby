@@ -7,4 +7,8 @@ class Card
 		@suit = attributes[:suit]
 	end
 
+	def == (another_card)
+		self.rank == another_card.rank && self.suit == another_card.suit
+	end
+	
 end

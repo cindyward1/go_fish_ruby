@@ -30,7 +30,7 @@ Requirements for execution
 
 Description:
 This Ruby application allows 2 players to play the game, Go Fish. [The Go Fish game rules](http://en.wikipedia.org/wiki/Go_fish) implemented in this application are as follows: 
-* 1) A deck of 52 cards is randomly shuffled.
+* 1) A deck of 52 cards is randomly shuffled using the [Durstenfeld algorithm](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm)
 * 2) Each player is alternately dealt a hand of 7 cards.
 * 3) The first player is randomly chosen. 
 * 4) The first player plays by asking the second player for all of his cards of the same rank as one of the cards in the first player's hand. The second player gives the requested cards to the first player, and the first player continues to play. If the cards received from the second player causes the first player to obtain a "book" of 4 cards of the same rank, he removes the cards from his hand and is awarded a point. If the second player does not have any cards of the requested rank, the first player is told to "Go fish" and draws a card from the top of the remaining deck. If the first player draws a card of the requested rank, he continues to play. If he draws any other card, even one that causes him to obtain a book and score a point, play passes to the second player.
