@@ -109,4 +109,16 @@ describe Hand do
 		expect(test_hand.cards.length).to eq 4
 	end
 
+	it "determines whether a card number may be requested" do
+		test_hand = Hand.new
+		test_card1 = Card.new({:rank=>5, :suit=>"Hearts"})
+		test_hand.cards << test_card1
+		expect(test_hand.valid_card_to_request?("5")[:result]).to eq true
+		expect(test_hand.valid_card_to_request?("5")[:rank]).to eq 5
+		expect(test_hand.valid_card_to_request?("jack")[:result]).to eq false
+		expect(test_hand.valid_card_to_request?("jack")[:reason]).to eq "You do not have that card in your hand"
+		expect(test_hand.valid_card_to_request?("0")[:result]).to eq false
+		expect(test_hand.valid_card_to_request?("0")[:reason]).to eq "Invalid card number"
+	end
+
 end

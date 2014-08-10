@@ -1,6 +1,6 @@
 class Hand
 	
-	attr_reader :cards
+	attr_reader :cards, :result, :reason, :rank
 
 	def initialize
 		@cards = []
@@ -39,7 +39,28 @@ class Hand
 			@cards.delete_if { |card_found| card_found.rank == rank }
 		end
 
-		return cards_to_delete
+		cards_to_delete
+
+	end
+
+
+	def valid_card_to_request?(rank_string)
+
+		rank_hash_reverse = { "j"=>11, "q"=>12, "k"=>13, "a"=>14 }
+
+		if rank_hash_reverse.include?(rank_string.slice(0,1).downcase)
+			rank = rank_hash_reverse[rank_string.slice(0,1).downcase]
+		else
+			rank = rank_string.to_i
+		end
+
+		if rank < 2 || rank > 14
+			return {:result=>false, :reason=>"Invalid card number"}
+		elsif self.find_in_hand(rank, false).length == 0
+			return {:result=>false, :reason=>"You do not have that card in your hand"}
+		else
+			return {:result=>true, :rank=>rank}
+		end
 
 	end
 
@@ -53,6 +74,17 @@ class Hand
 			return new_card.rank # found a book of returned rank in the hand and deleted the cards
 		else
 			return 0 # did not find a book in the hand
+		end
+
+	end
+
+
+	def print
+
+		self.sort_hand
+
+		@cards.each do |card|
+			puts "  #{card.print}"
 		end
 
 	end
