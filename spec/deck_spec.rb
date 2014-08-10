@@ -24,5 +24,6 @@ describe Deck do
 		expect(test_deck.cards[0]).not_to eq test_card
 	end
 
+
 end
 

@@ -33,4 +33,12 @@ class Deck
 
 	end
 
+
+	def deal_top_card(player_hand)
+
+			player_hand.cards << @cards[0]
+			return (@cards.delete_at(0))
+
+	end
+
 end
