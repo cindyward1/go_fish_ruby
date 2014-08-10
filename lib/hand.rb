@@ -50,7 +50,7 @@ class Hand
 
 		if found_cards.length == 4
 			@cards.delete_if { |book_of_found| book_of_found.rank == new_card.rank }
-			return new_card.rank # found a book of returned rank in the hand
+			return new_card.rank # found a book of returned rank in the hand and deleted the cards
 		else
 			return 0 # did not find a book in the hand
 		end
