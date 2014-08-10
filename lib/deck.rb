@@ -22,7 +22,7 @@ class Deck
 
 	def shuffle # this method uses the modern Durstenfeld algorithm to shuffle the deck
 
-		51.downto(1) do |index1| 
+		(@cards.length-1).downto(1) do |index1| 
 	  	index2 = rand(index1)
 	    @cards[index1], @cards[index2] = @cards[index2], @cards[index1]
 	  end
@@ -30,9 +30,8 @@ class Deck
 	end
 
 
-	def deal_top_card(player_hand)
+	def deal_top_card
 
-			player_hand.cards << @cards[0]
 			return (@cards.delete_at(0))
 
 	end
