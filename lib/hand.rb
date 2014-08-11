@@ -46,10 +46,10 @@ class Hand
 
 	def valid_card_to_request?(rank_string)
 
-		rank_hash_reverse = { "j"=>11, "q"=>12, "k"=>13, "a"=>14 }
+		face_cards_ranks = { "j"=>11, "q"=>12, "k"=>13, "a"=>14 }
 
-		if rank_hash_reverse.include?(rank_string.slice(0,1).downcase)
-			rank = rank_hash_reverse[rank_string.slice(0,1).downcase]
+		if rank_string.to_i == 0 && rank_string.length > 0 && face_cards_ranks.include?(rank_string.slice(0,1).downcase)
+			rank = face_cards_ranks[rank_string.slice(0,1).downcase]
 		else
 			rank = rank_string.to_i
 		end
@@ -71,9 +71,9 @@ class Hand
 
 		if found_cards.length == 4
 			@cards.delete_if { |book_of_found| book_of_found.rank == new_card.rank }
-			return new_card.rank # found a book of returned rank in the hand and deleted the cards
+			return new_card.rank
 		else
-			return 0 # did not find a book in the hand
+			return 0
 		end
 
 	end
@@ -84,7 +84,7 @@ class Hand
 		self.sort_hand
 
 		@cards.each do |card|
-			puts "  #{card.print}"
+			puts "  #{card.print("all")}"
 		end
 
 	end
